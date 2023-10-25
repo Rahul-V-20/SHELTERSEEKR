@@ -24,8 +24,9 @@ it looks like:
 step5) now the code is ready to run. you can run the app.py file
 
  working video of the website:
+
  
- https://github.com/Rahul-V-20/SHELTERSEEKR/assets/142727705/350b79b3-6a01-4589-87e5-757cfcf536bb
+
 
 
 
