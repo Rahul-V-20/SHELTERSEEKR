@@ -1,6 +1,6 @@
 HELLO!!!
 
-This is an application which finds places of accomodation within the distance the user has specified. the user can also select various ameniities 
+This is an application which finds places of accomodation within the distance the user has specified. the user can also select various amenities 
 that should be available.
 
 To run the application:
