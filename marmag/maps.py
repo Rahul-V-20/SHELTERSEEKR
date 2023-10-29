@@ -5,7 +5,7 @@ import os
 
 GOOGLE_API_KEY = os.environ.get('googleapikey') #create a environment variable called googleapikey which has your api key
 
-RAPIDAPI_KEY = "a1cef71eecmsh04a29364a8b9663p1088acjsn364d07876c37"
+
 
 
 def find_nearby_hostels(input_location, budget, amenity):
