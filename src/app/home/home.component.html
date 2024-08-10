@@ -1,0 +1,161 @@
+
+
+<nav class="bg-background text-foreground border-b border-border">
+  <div class="container mx-auto flex justify-between items-center py-4">
+    <div class="text-2xl font-bold text-primary">
+      <img src= "assets/shelterseekr-high-resolution-logo-transparent.png" alt="Logo" style=" width: 220px; height: 20px;">
+    </div>
+    <ul class="flex space-x-6" style="margin-right: 56px; margin-left: 20px;">
+      <li class="hover:text-primary">
+        <a href="#" class="relative">
+          Home
+          <span class="absolute left-0 -bottom-1 w-full h-0.5 bg-primary"></span>
+        </a>
+      </li>
+      <li class="hover:text-primary">
+        <a href="#">Rooms</a>
+      </li>
+      <li class="hover:text-primary">
+        <a href="#">About Us</a>
+      </li>
+      <li class="hover:text-primary">
+        <a href="#">Pages</a>
+      </li>
+      <li class="hover:text-primary">
+        <a href="#">News</a>
+      </li>
+      <li class="hover:text-primary">
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+    <div class="relative">
+      
+      <button (click)= "logout()" class="sign-out-button" style="margin-right: 40px;">
+        Sign Out
+      </button>
+    </div>
+  </div>
+</nav>
+<section class="relative bg-cover bg-center" style="background-image: url('assets/heromain.png');">
+  <div class="container mx-auto flex flex-col md:flex-row justify-between items-center py-20">
+    <div class="text-white max-w-lg">
+      <h1 class="text-5xl font-bold">Discover Dream Stays</h1>
+      <p class="mt-4">Explore a wide range of accommodations. Perfect for international travel and finding the best place to stay.</p>
+      <a href="#" class="discover-now-button">Discover Now</a>
+    </div>
+    <div class="bg-white text-foreground p-8 rounded-lg shadow-lg mt-10 md:mt-0 w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4">Booking Your Hotel</h2>
+      <form [formGroup]= "bookingform" (submit)= "onsubmit()">
+        <div class="mb-4">
+          <label for="checkin" class="block text-sm font-medium">Check In:</label>
+          <input type="date" id="checkin" class="w-full bg-input border border-border rounded px-4 py-2 mt-1" formControlName="checkin" />
+        </div>
+        <div class="mb-4">
+          <label for="checkout" class="block text-sm font-medium">Check Out:</label>
+          <input type="date" id="checkout" class="w-full bg-input border border-border rounded px-4 py-2 mt-1" formControlName="checkout" />
+        </div>
+        <div class="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label for="places" class="block text-sm font-medium">Place:</label>
+            <input
+              type="text"
+              id="places"
+              class="w-full bg-input border border-border rounded px-4 py-2 mt-1"
+              formControlName="places"
+              [matAutocomplete]= "auto"
+            />
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)= "onOptionSelected($event)">
+              <mat-option *ngFor= "let place of filteredPlaces | async" [value]= "place">
+                {{ place.label }}
+              </mat-option>
+            </mat-autocomplete>
+          </div>
+          
+          
+          <div>
+            <label for="room" class="block text-sm font-medium">Room(s):</label>
+            <select id="room" class="w-full bg-input border border-border rounded px-4 py-2 mt-1" formControlName="rooms">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+        </div>
+        <div class="mb-4 grid grid-cols-2 gap-4">
+          <div>
+            <label for="adults" class="block text-sm font-medium">Adults:</label>
+            <select id="adults" class="w-full bg-input border border-border rounded px-4 py-2 mt-1" formControlName="adults">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+          <div>
+            <label for="children" class="block text-sm font-medium">Children:</label>
+            <select id="children" class="w-full bg-input border border-border rounded px-4 py-2 mt-1" formControlName="children">
+              <option>0</option>
+              <option>1 </option>
+              <option>2 </option>
+              <option>3 </option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="w-full check-availability-btn mt-4" [disabled]= "bookingform.invalid">Check Availability</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-background text-foreground py-10">
+  <div class="container mx-auto flex flex-col md:flex-row justify-between items-center">
+    <div class="text-center md:text-left mb-6 md:mb-0">
+      <div class="text-2xl font-bold text-primary">
+        <img src= "assets/shelterseekr-high-resolution-logo-transparent.png" alt="Logo" style=" width: 220px; height: 20px;">
+      </div>
+      <p class="mt-2">Connecting You to Shelters Worldwide.</p>
+      <div class="flex justify-center md:justify-start space-x-4 mt-4">
+        <a href="#" class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80">
+          <img aria-hidden="true" alt="facebook-icon" src="https://openui.fly.dev/openui/24x24.svg?text=📘" />
+        </a>
+        <a href="#" class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80">
+          <img aria-hidden="true" alt="twitter-icon" src="https://openui.fly.dev/openui/24x24.svg?text=🐦" />
+        </a>
+        <a href="#" class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80">
+          <img aria-hidden="true" alt="instagram-icon" src="https://openui.fly.dev/openui/24x24.svg?text=📸" />
+        </a>
+        <a href="#" class="bg-secondary text-secondary-foreground p-2 rounded-full hover:bg-secondary/80">
+          <img aria-hidden="true" alt="youtube-icon" src="https://openui.fly.dev/openui/24x24.svg?text=📹" />
+        </a>
+      </div>
+    </div>
+    <div class="text-center md:text-left mb-6 md:mb-0">
+      <h2 class="text-xl font-bold">Contact Us</h2>
+      <p class="mt-2">+91 8072744158</p>
+      <p>rahulv2072003&#64;gmail.com</p>
+      <p>856 Cordia Extension Apt. 356, Lake, India</p>
+    </div>
+    <div class="text-center md:text-left">
+      <h2 class="text-xl font-bold">New Latest</h2>
+      <p class="mt-2">Get the latest updates and offers.</p>
+      <div class="flex mt-4">
+        <input type="email" placeholder="Email" class="bg-input border border-border rounded-l-full px-4 py-2">
+        <button class="bg-customGold text-primary-foreground px-4 py-2 rounded-r-full hover:bg-customGold/80">
+          <img aria-hidden="true" alt="send-icon" src="https://openui.fly.dev/openui/16x16.svg?text=✉️" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="container mx-auto mt-10 border-t border-border pt-6 text-center md:text-left">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+      <div class="flex space-x-6 mb-4 md:mb-0">
+        <a href="#" class="hover:text-primary">Contact</a>
+        <a href="#" class="hover:text-primary">Terms of use</a>
+        <a href="#" class="hover:text-primary">Privacy</a>
+        <a href="#" class="hover:text-primary">Environmental Policy</a>
+      </div>
+      <p class="text-muted-foreground">Copyright ©2024 All rights reserved<span class="text-primary"></span> </p>
+    </div>
+  </div>
+</footer>
