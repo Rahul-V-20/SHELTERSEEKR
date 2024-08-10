@@ -5,9 +5,86 @@
   <title>Hotelbooking</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    document.getElementById('guests').addEventListener('click', function() {
+      document.getElementById('guest-dropdown').classList.toggle('hidden');
+    });
+    document.getElementById('guest-done').addEventListener('click', function() {
+      document.getElementById('guest-dropdown').classList.add('hidden');
+      updateGuestSummary();
+    });
+    const updateGuestSummary = () => {
+      const adults = document.getElementById('adults-count').textContent;
+      const children = document.getElementById('children-count').textContent;
+      const rooms = document.getElementById('rooms-count').textContent;
+      document.getElementById('guest-summary').textContent = `${adults} adults · ${children} children · ${rooms} room${rooms > 1 ? 's' : ''}`;
+    };
+    const updateCount = (id, increment) => {
+      const countElement = document.getElementById(id);
+      let count = parseInt(countElement.textContent);
+      count = increment ? count + 1 : count - 1;
+      if (count < 0) count = 0;
+      countElement.textContent = count;
+    };
+    document.getElementById('adults-increase').addEventListener('click', () => updateCount('adults-count', true));
+    document.getElementById('adults-decrease').addEventListener('click', () => updateCount('adults-count', false));
+    document.getElementById('children-increase').addEventListener('click', () => updateCount('children-count', true));
+    document.getElementById('children-decrease').addEventListener('click', () => updateCount('children-count', false));
+    document.getElementById('rooms-increase').addEventListener('click', () => updateCount('rooms-count', true));
+    document.getElementById('rooms-decrease').addEventListener('click', () => updateCount('rooms-count', false));
+  </script>
+  <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+  <script type="text/javascript">
+    window.tailwind.config = {
+      darkMode: ['class'],
+      theme: {
+        extend: {
+          colors: {
+            border: 'hsl(var(--border))',
+            input: 'hsl(var(--input))',
+            ring: 'hsl(var(--ring))',
+            background: 'hsl(var(--background))',
+            foreground: 'hsl(var(--foreground))',
+            primary: {
+              DEFAULT: 'hsl(var(--primary))',
+              foreground: 'hsl(var(--primary-foreground))'
+            },
+            secondary: {
+              DEFAULT: 'hsl(var(--secondary))',
+              foreground: 'hsl(var(--secondary-foreground))'
+            },
+            destructive: {
+              DEFAULT: 'hsl(var(--destructive))',
+              foreground: 'hsl(var(--destructive-foreground))'
+            },
+            muted: {
+              DEFAULT: 'hsl(var(--muted))',
+              foreground: 'hsl(var(--muted-foreground))'
+            },
+            accent: {
+              DEFAULT: 'hsl(var(--accent))',
+              foreground: 'hsl(var(--accent-foreground))'
+            },
+            popover: {
+              DEFAULT: 'hsl(var(--popover))',
+              foreground: 'hsl(var(--popover-foreground))'
+            },
+            card: {
+              DEFAULT: 'hsl(var(--card))',
+              foreground: 'hsl(var(--card-foreground))'
+            },
+          },
+        }
+      }
+    }
+  </script>
+ 
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body class="mat-typography">
   <app-root></app-root>
 </body>
 </html>
